@@ -31,7 +31,7 @@ export async function POST(request: Request, {params} : {params: Promise<{invoic
             template_uuid: "df2e5063-260f-4d68-a7ac-8a2fc48bb405",
             template_variables: {
                 "clientName": invoiceData.clientName,
-                "invoiceLink": `http://localhost:3000/api/invoice/${invoiceData.id}`,
+                "invoiceLink": process.env.NODE_ENV !== 'production' ? `http://localhost:3000/api/invoice/${invoiceData.id}` : `https://www.heyinvoice.online/api/invoice/${invoiceData.id}`,
             }
         });
 

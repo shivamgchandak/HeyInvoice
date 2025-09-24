@@ -83,7 +83,7 @@ export async function createInvoice(prevState: any, formData: FormData) {
       "invoiceNumber": submission.value.invoiceNumber,
       "dueDate": `${submission.value.dueDate} days from ${new Date(submission.value.date).toDateString()}`,
       "totalAmount": `₹${submission.value.total}`,
-      "invoiceLink": `http://localhost:3000/api/invoice/${data.id}`,
+      "invoiceLink": process.env.NODE_ENV !== 'production' ? `http://localhost:3000/api/invoice/${data.id}` : `https://www.heyinvoice.online/api/invoice/${data.id}`,
     }
   });
 
@@ -143,7 +143,7 @@ export async function editInvoice(prevState: any, formdata: FormData){
       "invoiceNumber": submission.value.invoiceNumber,
       "dueDate": `${submission.value.dueDate} days from ${new Date(submission.value.date).toDateString()}`,
       "totalAmount": `₹${submission.value.total}`,
-      "invoiceLink": `http://localhost:3000/api/invoice/${data.id}`,
+      "invoiceLink": process.env.NODE_ENV !== 'production' ? `http://localhost:3000/api/invoice/${data.id}` : `https://www.heyinvoice.online/api/invoice/${data.id}`,
     }
   });
 
