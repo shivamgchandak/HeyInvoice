@@ -9,6 +9,11 @@ async function getData(invoiceId: string, userId: string) {
             id: invoiceId,
             userId: userId,
         },
+        include: {
+            items: {
+                orderBy: { position: "asc" },
+            },
+        },
     });
 
     if(!data){
