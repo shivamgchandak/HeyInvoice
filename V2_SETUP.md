@@ -21,6 +21,16 @@ pnpm prisma db push
 pnpm add -D @types/nodemailer
 ```
 
+The changes on this branch are already **staged** (`git status` will show them
+as `Changes to be committed`). Wrap them up with:
+
+```bash
+# If a stray lock file is present, clean it up first:
+rm -f .git/index.lock
+
+git commit -m "feat(v2): multi-item invoices, Nodemailer, branded PDF, refreshed UI"
+```
+
 Until `prisma generate` runs locally, `tsc` will report `items` errors on the
 new `InvoiceItem` relation — that is expected and clears immediately afterward.
 
