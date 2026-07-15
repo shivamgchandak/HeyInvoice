@@ -46,9 +46,11 @@ export function InvoiceActions({id, status} : iAppProps) {
                         <DownloadCloudIcon className="size-4 mr-2"/> Download Invoice
                     </Link>
                 </DropdownMenuItem>
-                <DropdownMenuItem onClick={handleSendRemainder}>
-                        <Mail className="size-4 mr-2"/> Remainder Email
-                </DropdownMenuItem>
+                {status !== "PAID" && (
+                    <DropdownMenuItem onClick={handleSendRemainder}>
+                            <Mail className="size-4 mr-2"/> Remainder Email
+                    </DropdownMenuItem>
+                )}
                 <DropdownMenuItem asChild>
                     <Link href={`/dashboard/invoices/${id}/delete`}>
                         <Trash className="size-4 mr-2"/> Delete Invoice
