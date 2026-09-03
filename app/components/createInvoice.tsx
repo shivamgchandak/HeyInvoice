@@ -127,8 +127,8 @@ export function CreateInvoice({
 
     return (
         <div>
-            <Card className="w-full max-w-6xl mx-auto shadow-lg border-border/60 bg-gradient-to-br from-background to-muted/30">
-                <CardContent className="p-8">
+            <Card className="w-full max-w-6xl mx-auto">
+                <CardContent className="p-6">
                     <form
                         id={form.id}
                         action={action}
@@ -151,20 +151,14 @@ export function CreateInvoice({
                             value={itemsPayload}
                         />
 
-                        <div className="flex flex-col gap-1 w-fit mb-8">
+                        <div className="flex flex-col gap-1 w-fit mb-6">
                             <div className="flex items-center gap-4">
-                                <Badge
-                                    variant="secondary"
-                                    className="bg-gradient-to-r from-blue-500/15 to-teal-500/15 text-blue-600 border-blue-500/20"
-                                >
-                                    Draft
-                                </Badge>
+                                <Badge variant="secondary">Draft</Badge>
                                 <Input
                                     name={fields.invoiceName.name}
                                     key={fields.invoiceName.key}
                                     defaultValue={fields.invoiceName.initialValue}
-                                    placeholder="Invoice Name"
-                                    className="text-lg font-semibold"
+                                    placeholder="test 123"
                                 />
                             </div>
                             <p className="text-sm text-red-500">
@@ -285,7 +279,7 @@ export function CreateInvoice({
                                 <Label>Date</Label>
                                 <Popover>
                                     <PopoverTrigger asChild>
-                                        <Button variant="outline" className="w-full justify-start">
+                                        <Button variant="outline">
                                             <CalendarIcon />
                                             {selectedDate ? (
                                                 new Intl.DateTimeFormat("en-IN", {
@@ -342,8 +336,8 @@ export function CreateInvoice({
                         </div>
 
                         {/* Items section */}
-                        <div className="mb-6 rounded-lg border bg-card/50 p-4">
-                            <div className="hidden md:grid grid-cols-14 gap-3 mb-2 font-medium text-sm text-muted-foreground">
+                        <div className="mb-6">
+                            <div className="grid grid-cols-14 gap-3 mb-2 font-medium text-sm">
                                 <p className="col-span-4">Description</p>
                                 <p className="col-span-2">Quantity</p>
                                 <p className="col-span-2">Rate</p>
@@ -357,19 +351,19 @@ export function CreateInvoice({
                                 return (
                                     <div
                                         key={it.id}
-                                        className="grid grid-cols-1 md:grid-cols-14 gap-3 mb-3 items-start group"
+                                        className="grid grid-cols-14 gap-3 mb-4 items-start"
                                     >
-                                        <div className="md:col-span-4">
+                                        <div className="col-span-4">
                                             <Textarea
                                                 placeholder={`Item ${idx + 1} - Name & description`}
-                                                className="min-h-[44px]"
+                                                className="min-h-[40px]"
                                                 value={it.description}
                                                 onChange={(e) =>
                                                     updateItem(it.id, "description", e.target.value)
                                                 }
                                             />
                                         </div>
-                                        <div className="md:col-span-2">
+                                        <div className="col-span-2">
                                             <Input
                                                 type="number"
                                                 placeholder="Qty"
@@ -379,7 +373,7 @@ export function CreateInvoice({
                                                 }
                                             />
                                         </div>
-                                        <div className="md:col-span-2">
+                                        <div className="col-span-2">
                                             <Input
                                                 type="number"
                                                 placeholder="Rate"
@@ -389,7 +383,7 @@ export function CreateInvoice({
                                                 }
                                             />
                                         </div>
-                                        <div className="md:col-span-2">
+                                        <div className="col-span-2">
                                             <Input
                                                 type="number"
                                                 placeholder="0"
@@ -399,7 +393,7 @@ export function CreateInvoice({
                                                 }
                                             />
                                         </div>
-                                        <div className="md:col-span-2">
+                                        <div className="col-span-2">
                                             <Input
                                                 type="number"
                                                 placeholder="0"
@@ -409,12 +403,12 @@ export function CreateInvoice({
                                                 }
                                             />
                                         </div>
-                                        <div className="md:col-span-2 flex items-center gap-2">
+                                        <div className="col-span-2 flex items-center gap-2">
                                             <Input
                                                 type="number"
                                                 placeholder="0"
                                                 disabled
-                                                className="bg-muted/40"
+                                                className="bg-gray-50"
                                                 value={amount.toFixed(2)}
                                             />
                                             <Button
@@ -437,7 +431,7 @@ export function CreateInvoice({
                                 type="button"
                                 variant="outline"
                                 onClick={addItem}
-                                className="mt-2 border-dashed hover:border-blue-500 hover:text-blue-600"
+                                className="mt-2"
                             >
                                 <Plus className="mr-2 h-4 w-4" /> Add another item
                             </Button>
@@ -448,18 +442,18 @@ export function CreateInvoice({
                         </div>
 
                         <div className="flex justify-end mb-6">
-                            <div className="w-full sm:w-1/2 md:w-1/3 rounded-lg border bg-card/50 p-4">
-                                <div className="flex justify-between py-1 text-sm text-muted-foreground">
+                            <div className="w-1/3">
+                                <div className="flex justify-between py-2">
                                     <span>Subtotal</span>
                                     <span>₹{totals.subtotal.toFixed(2)}</span>
                                 </div>
-                                <div className="flex justify-between py-1 text-sm text-muted-foreground">
+                                <div className="flex justify-between py-2">
                                     <span>After Discount</span>
                                     <span>₹{totals.afterDiscount.toFixed(2)}</span>
                                 </div>
-                                <div className="flex justify-between py-2 border-t mt-2">
-                                    <span className="font-medium">Total (INR)</span>
-                                    <span className="font-bold text-lg bg-gradient-to-r from-blue-600 to-teal-500 bg-clip-text text-transparent">
+                                <div className="flex justify-between py-2 border-t">
+                                    <span>Total (INR)</span>
+                                    <span className="font-medium underline underline-offset-2">
                                         ₹{totals.total.toFixed(2)}
                                     </span>
                                 </div>
